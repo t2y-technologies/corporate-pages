@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>お問い合わせフォーム</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: #747b65; /* ベースカラー */
+      color: #f9f7f4; /* アクセントカラー */
+    }
+    h1, p {
+      color: #f9f7f4; /* アクセントカラー */
+    }
+    .form-label {
+      color: #f9f7f4; /* アクセントカラー */
+    }
+    .form-control {
+      background-color: #1C2A05; /* メインカラー */
+      color: #f9f7f4; /* アクセントカラー */
+      border: 1px solid #f9f7f4;
+    }
+    .form-control::placeholder {
+      color: #f9f7f4; /* アクセントカラー */
+    }
+    .form-control:focus {
+      border-color: #f9f7f4;
+      box-shadow: 0 0 5px #f9f7f4;
+    }
+    .btn-primary {
+      background-color: #f9f7f4; /* アクセントカラー */
+      border-color: #f9f7f4;
+      color: #1C2A05; /* メインカラー */
+    }
+    .btn-primary:hover {
+      background-color: #f9f7f4; /* アクセントカラー */
+      border-color: #f9f7f4;
+    }
+    .text-muted {
+      color: #f9f7f4; /* アクセントカラー */
+    }
+    .navbar {
+      background-color: #1C2A05; /* メインカラー */
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #f9f7f4 !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">T2Y Technologies</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">サービス</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">お問い合わせ</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">お問い合わせ</h1>
+    <p class="text-center">
+      下記の項目を入力して、「送信する」のボタンを押してください。<br />
+      必須の欄は必ず全てご記入ください。
+    </p>
+    <p class="text-center text-muted">
+      ※回答までには1週間程度かかる場合がございます。ご了承ください。
+    </p>
+
+    <!-- お問い合わせフォーム -->
+    <form
+      action="https://docs.google.com/forms/d/1HfqLJmi-xPWX8VQMqV4euBJEbN7d9M_dgXIWN8Uip7s/formResponse"
+      method="POST"
+      target="hidden_iframe"
+      onsubmit="handleFormSubmit(event);"
+      id="contactForm"
+    >
+      <!-- 名前 -->
+      <div class="mb-3">
+        <label for="name" class="form-label">名前・会社名<span class="text-danger">*</span></label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="entry.2005620554"
+          placeholder="氏名または会社名"
+          required
+        />
+      </div>
+
+      <!-- メールアドレス -->
+      <div class="mb-3">
+        <label for="email" class="form-label">メールアドレス<span class="text-danger">*</span></label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="entry.1045781291"
+          placeholder="sample@example.com"
+          required
+        />
+      </div>
+
+      <!-- 件名 -->
+      <div class="mb-3">
+        <label for="name" class="form-label">件名<span class="text-danger">*</span></label>
+        <input
+          type="text"
+          class="form-control"
+          id="subject"
+          name="entry.1166974658"
+          placeholder="件名を入力してください"
+          required
+        />
+      </div>
+
+      <!-- お問い合わせ内容 -->
+      <div class="mb-3">
+        <label for="message" class="form-label">お問い合わせ内容</label>
+        <textarea
+          class="form-control"
+          id="message"
+          name="entry.839337160"
+          rows="4"
+          placeholder="お問い合わせ内容を入力してください"
+        ></textarea>
+      </div>
+
+      <!-- 送信ボタン -->
+      <button type="submit" class="btn btn-primary">送信する</button>
+    </form>
+  </div>
+
+  <iframe
+    name="hidden_iframe"
+    id="hidden_iframe"
+    style="display: none;"
+    onload="redirectToThankYou();"
+  ></iframe>
+
+  <script type="text/javascript">
+    let submitted = false;
+
+    function handleFormSubmit() {
+      submitted = true; // フォーム送信フラグを設定
+    }
+
+    function redirectToThankYou() {
+      if (submitted) {
+        // フォーム送信後にthankyou.htmlへリダイレクト
+        window.location = './thankyou.html';
+      }
+    }
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
